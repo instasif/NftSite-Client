@@ -2,8 +2,8 @@ import React from 'react';
 
 const Header = () => {
     return (
-      <header aria-label="Site Header" className="bg-white">
-        <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+      <header aria-label="Site Header" className="text-white sticky top-0 z-30">
+        <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 text-white">
           <div className="flex h-16 items-center justify-between">
             <div className="md:flex md:items-center md:gap-12">
               <a className="block text-teal-600" href="/">
@@ -28,7 +28,7 @@ const Header = () => {
                 <ul className="flex items-center gap-6 text-sm">
                   <li>
                     <a
-                      className="text-gray-500 transition hover:text-gray-500/75"
+                      className="text-white transition hover:text-gray-500/75"
                       href="/"
                     >
                       About
@@ -37,7 +37,7 @@ const Header = () => {
 
                   <li>
                     <a
-                      className="text-gray-500 transition hover:text-gray-500/75"
+                      className="text-white transition hover:text-gray-500/75"
                       href="/"
                     >
                       Careers
@@ -46,7 +46,7 @@ const Header = () => {
 
                   <li>
                     <a
-                      className="text-gray-500 transition hover:text-gray-500/75"
+                      className="text-white transition hover:text-gray-500/75"
                       href="/"
                     >
                       History
@@ -55,7 +55,7 @@ const Header = () => {
 
                   <li>
                     <a
-                      className="text-gray-500 transition hover:text-gray-500/75"
+                      className="text-white transition hover:text-gray-500/75"
                       href="/"
                     >
                       Services
@@ -64,7 +64,7 @@ const Header = () => {
 
                   <li>
                     <a
-                      className="text-gray-500 transition hover:text-gray-500/75"
+                      className="text-white transition hover:text-gray-500/75"
                       href="/"
                     >
                       Projects
@@ -73,7 +73,7 @@ const Header = () => {
 
                   <li>
                     <a
-                      className="text-gray-500 transition hover:text-gray-500/75"
+                      className="text-white transition hover:text-gray-500/75"
                       href="/"
                     >
                       Blog

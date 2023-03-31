@@ -5,7 +5,7 @@ import Hero from './Componants/Hero/Hero';
 const App = () => {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <Hero />
     </div>
   );
