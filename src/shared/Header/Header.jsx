@@ -2,7 +2,10 @@ import React from 'react';
 
 const Header = () => {
     return (
-      <header aria-label="Site Header" className="text-white sticky top-0 z-30">
+      <header
+        aria-label="Site Header"
+        className=" text-white sticky top-0 z-30"
+      >
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 text-white">
           <div className="flex h-16 items-center justify-between">
             <div className="md:flex md:items-center md:gap-12">

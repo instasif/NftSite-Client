@@ -1,12 +1,14 @@
 import React from 'react';
-import Header from './Componants/Header/Header';
-import Hero from './Componants/Hero/Hero';
+import { Toaster } from 'react-hot-toast';
+import { RouterProvider } from 'react-router-dom';
+import router from './router/routes/Route';
+
 
 const App = () => {
   return (
     <div>
-      {/* <Header /> */}
-      <Hero />
+      <RouterProvider router={router} />
+      <Toaster position="bottom-center" reverseOrder={false} />
     </div>
   );
 };
