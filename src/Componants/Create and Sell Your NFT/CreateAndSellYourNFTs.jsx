@@ -32,9 +32,11 @@ const CreateAndSellYourNFTs = () => {
   ];
   return (
     <div className="max-w-7xl my-14 mx-10">
-      <h3 className="text-2xl mx-auto mt-6 mb-6 font-bold">
-        Create and Sell Your NFT
-      </h3>
+      <div className="items-center mx-16">
+        <h3 className="text-2xl mx-auto mt-6 mb-6 font-bold">
+          Create and Sell Your NFT
+        </h3>
+      </div>
       <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
         {creteNFTs.map((NFT, i) => (
           <CreateAndSellYourNFT key={i} NFT={NFT} />
