@@ -1,7 +1,7 @@
 import React from 'react';
 import Hero from '../../Componants/Hero/Hero';
-import TodaysPic from './TodaysPic/TodaysPic';
-import LiveActions from './LiveActions/LiveActions';
+import TodaysPic from '../../Componants/TodaysPic/TodaysPic';
+import LiveActions from '../../Componants/LiveActions/LiveActions';
 
 const Home = () => {
     return (
