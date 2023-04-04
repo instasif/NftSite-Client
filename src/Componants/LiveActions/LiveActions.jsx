@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { AiFillCaretRight } from 'react-icons/ai'
 import LiveActionCard from './LiveActionCard';
+import { useSelector } from 'react-redux'
 
 const LiveActions = () => {
     const [products, setProducts] = useState([]);
+    const state = useSelector((state) => state.auth)
+    console.log(state)
 
     useEffect(() => {
         fetch("products.json")
-          .then((res) => res.json())
-          .then((data) => {
-            setProducts(data);
-            console.log(data);
-          });
+            .then((res) => res.json())
+            .then((data) => {
+                setProducts(data);
+                console.log(data);
+            });
     }, [])
     return (
         <div className='max-w-7xl my-10 mx-5'>
