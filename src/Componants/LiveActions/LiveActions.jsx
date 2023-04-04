@@ -5,15 +5,11 @@ import { useSelector } from 'react-redux'
 
 const LiveActions = () => {
     const [products, setProducts] = useState([]);
-    const state = useSelector((state) => state.auth)
-    console.log(state)
-
     useEffect(() => {
         fetch("products.json")
             .then((res) => res.json())
             .then((data) => {
                 setProducts(data);
-                console.log(data);
             });
     }, [])
     return (
