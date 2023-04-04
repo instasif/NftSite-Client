@@ -1,10 +1,15 @@
 import React from "react";
 import { AiFillCheckCircle } from "react-icons/ai";
+import { RiCheckboxBlankCircleLine } from "react-icons/ri";
 
 const TopSeller = ({ Seller }) => {
   const { icon, name, content } = Seller;
   return (
     <div className="mx-auto w-32">
+      {/*  <RiCheckboxBlankCircleLine
+        className="mb-[-16px]  me-[-4px] float-right text-3xl text-blue-700 
+     "
+      /> */}
       <AiFillCheckCircle
         className="mb-[-16px]  me-[-4px] float-right text-3xl text-blue-700 
      "
