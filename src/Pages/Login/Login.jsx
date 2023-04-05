@@ -2,8 +2,27 @@ import React from 'react';
 import tiger from "../../assets/img/tiger.png"
 import Header from '../../shared/Header/Header';
 import { Link } from 'react-router-dom';
+import { useFormik } from "formik";
+import { loginpSchema } from "../../schemas";
+
+const initialValues = {
+  email: "",
+  password: "",
+};
 
 const Login = () => {
+
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: loginpSchema,
+      onSubmit: (values, action) => {
+        console.log(values);
+
+        action.resetForm();
+      },
+    });
+
     return (
       <div>
         <Header />
@@ -23,7 +42,10 @@ const Login = () => {
               </p>
             </div>
 
-            <form action="" className="mx-auto mt-8 mb-0 max-w-md space-y-4">
+            <form
+              onSubmit={handleSubmit}
+              className="mx-auto mt-8 mb-0 max-w-md space-y-4"
+            >
               <div>
                 <label for="email" className="sr-only">
                   Email
@@ -34,9 +56,17 @@ const Login = () => {
                     type="email"
                     name="email"
                     id="email"
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                     className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                     placeholder="Enter email"
                   />
+                  {errors?.email && touched?.email ? (
+                    <p className="text-bold text-lg text-rose-600">
+                      {errors?.email}
+                    </p>
+                  ) : null}
 
                   <span className="absolute inset-y-0 right-0 grid place-content-center px-4">
                     <svg
@@ -67,9 +97,17 @@ const Login = () => {
                     type="password"
                     name="password"
                     id="password"
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                     className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                     placeholder="Enter password"
                   />
+                  {errors?.password && touched?.password ? (
+                    <p className="text-bold text-lg text-rose-600">
+                      {errors?.password}
+                    </p>
+                  ) : null}
                 </div>
               </div>
 
