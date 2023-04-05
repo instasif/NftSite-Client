@@ -4,6 +4,8 @@ import Header from "../../shared/Header/Header";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import { signupSchema } from "../../schemas";
+import { useDispatch } from "react-redux";
+import { createUser } from "../../app/features/Auth/authSlice";
 
 const initialValues = {
   name: "",
@@ -12,12 +14,13 @@ const initialValues = {
 };
 
 const Signup = () => {
+  const dispatch = useDispatch()
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
     validationSchema: signupSchema,
-    onSubmit: (values, action) => {
-      console.log(values);
-      
+    onSubmit: ({ email, password, name }, action) => {
+      dispatch(createUser({ email, password }))
+
       action.resetForm();
     },
   });

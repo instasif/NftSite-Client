@@ -11,12 +11,12 @@ const initialState = {
 
 export const createUser = createAsyncThunk("auth/createUser", async ({ email, password }) => {
     const data = await createUserWithEmailAndPassword(auth, email, password)
-    return data.user;
+    return data.user.email;
 });
 
 export const loginUser = createAsyncThunk("auth/loginUser", async ({ email, password }) => {
     const data = await signInWithEmailAndPassword(auth, email, password)
-    return data.user;
+    return data.user.email;
 });
 
 export const googleLogin = createAsyncThunk("auth/googleLogin", async () => {
@@ -34,7 +34,7 @@ const authSlice = createSlice({
             state.user.email = "";
         },
         setUser: (state, { payload }) => {
-            state.user.name = payload.displayName;
+            state.user.name = payload.name;
             state.user.email = payload.email;
         }
     },
@@ -48,8 +48,7 @@ const authSlice = createSlice({
                 state.isLoading = false;
                 state.isError = false;
                 state.error = "";
-                state.user.name = payload.displayName;
-                state.user.email = payload.email;
+                state.user.email = payload;
             })
             .addCase(createUser.rejected, (state, action) => {
                 state.isLoading = false;
@@ -67,8 +66,7 @@ const authSlice = createSlice({
                 state.isLoading = false;
                 state.isError = false;
                 state.error = "";
-                state.user.name = payload.payload.displayName;
-                state.user.email = payload.payload.email;
+                state.user.email = payload;
             })
             .addCase(loginUser.rejected, (state, action) => {
                 state.isLoading = false;

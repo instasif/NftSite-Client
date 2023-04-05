@@ -13,7 +13,7 @@ const App = () => {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        dispatch(setUser(user))
+        dispatch(setUser({ email: user.email, name: user.displayName }))
       }
     })
   }, [])
