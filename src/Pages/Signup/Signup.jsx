@@ -2,12 +2,31 @@ import React from "react";
 import tiger from "../../assets/img/tiger.png";
 import Header from "../../shared/Header/Header";
 import { Link } from "react-router-dom";
+import { useFormik } from "formik";
+import { signupSchema } from "../../schemas";
+
+const initialValues = {
+  name: "",
+  email: "",
+  password: "",
+};
+
 const Signup = () => {
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
+    initialValues: initialValues,
+    validationSchema: signupSchema,
+    onSubmit: (values, action) => {
+      console.log(values);
+      
+      action.resetForm();
+    },
+  });
+
   return (
     <div>
       <Header />
       <section
-        className="relative flex flex-wrap lg:h-screen lg:items-center sm:bg-transparent sm:bg-gradient-to-r sm:from-black/25 sm:to-black/90 bg-black/75"
+        className="relative flex flex-wrap lg:h-screen lg:items-center sm:bg-transparent sm:bg-gradient-to-r sm:from-black/25 sm:to-black/80 bg-black/75"
         style={{ backgroundColor: "#3A0021" }}
       >
         <div className="px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
@@ -22,7 +41,10 @@ const Signup = () => {
             </p>
           </div>
 
-          <form action="" className="mx-auto mt-8 mb-0 max-w-md space-y-4">
+          <form
+            onSubmit={handleSubmit}
+            className="mx-auto mt-8 mb-0 max-w-md space-y-4"
+          >
             <div>
               <label for="name" className="sr-only">
                 Full Name
@@ -32,9 +54,18 @@ const Signup = () => {
                 <input
                   type="text"
                   name="name"
+                  id="name"
+                  value={values.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                   className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                   placeholder="Enter full name"
                 />
+                {errors.name && touched.name ? (
+                  <p className="text-bold text-lg text-rose-600">
+                    {errors?.name}
+                  </p>
+                ) : null}
               </div>
             </div>
 
@@ -47,9 +78,18 @@ const Signup = () => {
                 <input
                   type="email"
                   name="email"
+                  id="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                   className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                   placeholder="Enter email"
                 />
+                {errors?.email && touched?.email ? (
+                  <p className="text-bold text-lg text-rose-600">
+                    {errors?.email}
+                  </p>
+                ) : null}
 
                 <span className="absolute inset-y-0 right-0 grid place-content-center px-4">
                   <svg
@@ -79,32 +119,18 @@ const Signup = () => {
                 <input
                   type="password"
                   name="password"
+                  id="password"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                   className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                   placeholder="Enter password"
                 />
-
-                <span className="absolute inset-y-0 right-0 grid place-content-center px-4">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 text-gray-400"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                    />
-                  </svg>
-                </span>
+                {errors?.password && touched?.password ? (
+                  <p className="text-bold text-lg text-rose-600">
+                    {errors?.password}
+                  </p>
+                ) : null}
               </div>
             </div>
 
@@ -116,12 +142,11 @@ const Signup = () => {
                 </Link>
               </p>
 
-              <button
+              <input
                 type="submit"
-                className="inline-block rounded-lg bg-black px-5 py-3 text-sm font-medium text-white"
-              >
-                Sign in
-              </button>
+                value="Sign up"
+                className="inline-block rounded-lg px-5 py-3 text-sm font-medium text-white bg-black cursor-pointer"
+              />
             </div>
           </form>
         </div>
