@@ -6,7 +6,7 @@ import { BsTwitter } from "react-icons/bs";
 import { BsTelegram } from "react-icons/bs";
 const Footer = () => {
   return (
-    <div className="px-4 pt-16 mx-auto mt-6  bg-gray-200">
+    <div className="px-4 pt-16 mx-auto mt-6 h-[7cm] bg-gray-200">
       <div className="grid gap-16 row-gap-10 mb-8 lg:grid-cols-6">
         <div className="md:max-w-md lg:col-span-2">
           <a
@@ -149,15 +149,15 @@ const Footer = () => {
               SUBSCRIBE US
             </span>
             <form className="flex flex-col mt-4 md:flex-row">
-              <input
+              {/* <input
                 placeholder="info@yourgmail.com"
                 required
                 type="text"
                 className="flex-grow w-full h-12 px-4 mb-3 transition duration-200 bg-white border border-gray-300 rounded-md shadow-sm appearance-none  md:mb-0  "
-              />
-              <HiArrowNarrowRight className="text-3xl justify-center bg-blue-400 h-11 rounded-sm " />
+              /> */}
+              {/* <HiArrowNarrowRight className="text-3xl justify-center bg-blue-400 h-11 rounded-sm " /> */}
             </form>
-            <div className="flex items-center mt-10 pt-5 pb-10 space-x-4 sm:mt-0">
+            <div className="flex items-center pb-10 space-x-4 sm:mt-0 cursor-pointer">
               <BsFacebook className="text-3xl text-gray-700 mt-4" />
               <BsWhatsapp className="text-3xl text-green-500 mt-4" />
               <BsTwitter className="text-3xl text-blue-700 mt-4" />
