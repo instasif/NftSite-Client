@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import logo from "../../../public/vite.svg";
 
 const Navigation = () => {
   const [scroll, setScroll] = useState(false);
@@ -20,29 +21,29 @@ const Navigation = () => {
   };
   return (
     <nav
-      className={`${scroll ? "bg-white shadow-md" : "bg-transparent"
-        } fixed w-full z-50`}
+      className={`${
+        scroll
+          ? "bg-white shadow-md text-gray-700 hover:text-black"
+          : "bg-transparent text-white"
+      } fixed w-full z-50`}
     >
       <div className="container mx-auto px-4 py-5 flex items-center justify-around">
         <Link to="/">
-          <img src='' alt="logo" className="w-24" />
+          <img src={logo} alt="logo" className="w-7" />
         </Link>
         <div className="flex">
-          <Link
-            to="/"
-            className="text-gray-700 mx-3 font-medium hover:text-black"
-          >
+          <Link to="/" className=" mx-3 font-mediu">
             Home
           </Link>
           <Link
             to="/about"
-            className="text-gray-700 mx-3 font-medium hover:text-black"
+            className="mx-3 font-medium"
           >
             About
           </Link>
           <Link
             to="/contact"
-            className="text-gray-700 mx-3 font-medium hover:text-black"
+            className="mx-3 font-medium"
           >
             Contact
           </Link>
