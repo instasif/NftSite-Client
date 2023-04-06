@@ -19,38 +19,38 @@ const Navigation = () => {
       }
     };
     return (
-    <nav
-      className={`${
-        scroll ? "bg-white shadow-md" : "bg-transparent"
-      } fixed w-full z-50`}
-    >
-      <div className="container mx-auto px-4 py-5 flex items-center justify-between">
-        <Link to="/">
-          <img src='' alt="logo" className="w-24" />
-        </Link>
-        <div className="flex">
-          <Link
-            to="/"
-            className="text-gray-700 mx-3 font-medium hover:text-black"
-          >
-            Home
+      <nav
+        className={`${
+          scroll
+            ? "bg-white shadow-md text-gray-700 hover:text-black"
+            : "bg-transparent text-white"
+        } fixed w-full z-50`}
+      >
+        <div className="container mx-auto px-4 py-5 flex items-center justify-around">
+          <Link to="/">
+            <img src="" alt="logo" className="w-24" />
           </Link>
-          <Link
-            to="/about"
-            className="text-gray-700 mx-3 font-medium hover:text-black"
-          >
-            About
-          </Link>
-          <Link
-            to="/contact"
-            className="text-gray-700 mx-3 font-medium hover:text-black"
-          >
-            Contact
-          </Link>
+
+          <div className="flex">
+            <Link to="/" className=" mx-3 font-medium ">
+              Home
+            </Link>
+            <Link
+              to="/about"
+              className=" mx-3 font-medium "
+            >
+              About
+            </Link>
+            <Link
+              to="/contact"
+              className="mx-3 font-medium"
+            >
+              Contact
+            </Link>
+          </div>
         </div>
-      </div>
-    </nav>
-  );
+      </nav>
+    );
 };
 
 export default Navigation;
