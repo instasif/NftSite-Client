@@ -1,11 +1,11 @@
 import React from 'react';
 import tiger from "../../assets/img/tiger.png"
-import Header from '../../shared/Header/Header';
 import { Link } from 'react-router-dom';
 import { useFormik } from "formik";
 import { loginpSchema } from "../../schemas";
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../app/features/Auth/authSlice';
+import Navigation from '../../shared/Header/Navigation';
 
 const initialValues = {
   email: "",
@@ -26,7 +26,7 @@ const Login = () => {
 
   return (
     <div>
-      <Header />
+      <Navigation />
       <section
         className="relative flex flex-wrap lg:h-screen lg:items-center sm:bg-transparent sm:bg-gradient-to-r sm:from-black/25 sm:to-black/80 bg-black/75"
         style={{ backgroundColor: "#3A0021" }}

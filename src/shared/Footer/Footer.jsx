@@ -7,7 +7,7 @@ import { BsTelegram } from "react-icons/bs";
 const Footer = () => {
   return (
     <div className="px-4 pt-16 mx-auto mt-6  bg-gray-200">
-      <div className="grid gap-16 row-gap-10 mb-8 lg:grid-cols-6">
+      <div className="grid gap-16 row-gap-10 lg:grid-cols-6">
         <div className="md:max-w-md lg:col-span-2">
           <a
             href="/"

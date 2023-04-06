@@ -37,14 +37,43 @@ const Hero = () => {
               </div>
             </div>
 
-            <div>
-              <img src={monkey} alt="nft monkey" className="mb-[-68px]" />
+            <div className="hidden lg:block md:block">
+              <img src={monkey} alt="nft monkey" className="mb-[-90px]" />
             </div>
           </div>
         </div>
       </div>
+
+      {/* <div className="flex justify-between align-items-center ">
+        <div className="max-w-xl text-center sm:text-left ms-4">
+          <div className="text-white text-4xl">
+            <p>Discover,find,sell,</p>
+            <p className="m-3">Eextraordinary</p>
+            <div className="flex gap-2 m-4 text-4xl">
+              <p> Monster</p> <strong>NFTs</strong>
+            </div>
+          </div>
+        </div>
+        <div>
+          <img src={monkey} alt="nft monkey" className="mb-[-68px]" />
+        </div>
+      </div> */}
     </section>
   );
 };
 
 export default Hero;
+
+
+
+/*
+<div className="text-white text-4xl">
+                <p>Discover,find,sell,</p>
+                <p className="m-3">Eextraordinary</p>
+                <div className="flex gap-2 m-4 text-4xl">
+                  <p> Monster</p> <strong>NFTs</strong>
+                </div>
+              </div>
+
+
+*/
