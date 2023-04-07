@@ -41,7 +41,7 @@ const Hero = () => {
               <img
                 src={monkey}
                 alt="nft monkey"
-                className="mb-2 md:mb-[-173px] lg:mb-[-68px]"
+                className="mb-2 md:mb-[-167px] lg:mb-[-68px]"
               />
             </div>
           </div>
