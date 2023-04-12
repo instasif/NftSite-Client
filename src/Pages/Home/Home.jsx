@@ -5,11 +5,13 @@ import LiveActions from "../../Componants/LiveActions/LiveActions";
 import CreateAndSellYourNFTs from "../../Componants/Create and Sell Your NFT/CreateAndSellYourNFTs";
 import PopularCollections from "../../Componants/Popular Collection/PopularCollections";
 import TopSellers from "../../Componants/Top Seller/TopSellers";
+import TestHero from "../../Componants/Hero/TestHero";
 
 const Home = () => {
   return (
     <div>
-      <Hero />
+      {/* <Hero /> */}
+      <TestHero />
       <LiveActions />
       <TopSellers />
       <TodaysPic />
