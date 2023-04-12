@@ -61,5 +61,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-//mb-2 md:mb-[-167px] lg:mb-[-68px] hidden lg:block md:block
