@@ -1,18 +1,28 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import monkey from '../../assets/img/monkey.png'
 import hero from "../../assets/img/hero.png";
-import monkey from "../../assets/img/monkey.png";
+import { Link } from 'react-router-dom';
+
+// sm:bg-transparent sm:bg-gradient-to-r sm:from-black/95 sm:to-black/25 bg-black/75
 
 const Hero = () => {
-  return (
-    <section
-      style={{ backgroundImage: `url(${hero})` }}
-      className="relative bg-cover bg-center bg-no-repeat h-[600px] w-full mt-0"
-    >
-      <div className="absolute inset-0   sm:bg-transparent sm:bg-gradient-to-r sm:from-black/95 sm:to-black/25 bg-black/75">
+    return (
+      <div className="relative">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img
+            className="w-full h-full object-cover"
+            src={hero}
+            alt="Hero Banner Background"
+          />
+          {/* Dark overlay */}
+          <div className="absolute inset-0 sm:bg-transparent sm:bg-gradient-to-r sm:from-black/95 sm:to-black/25 bg-black/75 opacity-50"></div>
+        </div>
+
+        {/* Content */}
         <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
           <div className="flex justify-between flex-auto items-center">
-            <div className="max-w-xl text-center sm:text-left ms-4">
+            <div className="max-w-xl text-center sm:text-left ms-4 -mb-86">
               <div className="text-white text-4xl">
                 <p>Discover,find,sell,</p>
                 <p className="m-3">Eextraordinary</p>
@@ -37,18 +47,17 @@ const Hero = () => {
               </div>
             </div>
 
-            <div className="hidden lg:block md:block">
+            <div className="hidden md:block lg:block">
               <img
                 src={monkey}
                 alt="nft monkey"
-                className="mb-2 md:mb-[-167px] lg:mb-[-68px]"
+                className="lg:mb-[-130px] md:mb-[-128px]"
               />
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    );
 };
 
 export default Hero;

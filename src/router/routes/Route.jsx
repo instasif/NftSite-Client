@@ -5,6 +5,7 @@ import Home from "../../Pages/Home/Home";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Signup from "../../Pages/Signup/Signup";
 import Login from "../../Pages/Login/Login";
+import NftDetails from "../../Pages/NftDetails/NftDetails";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      {
+        path: 'details/:id',
+        element: <NftDetails />
+      }
     ],
   },
   {
@@ -22,9 +27,10 @@ const router = createBrowserRouter([
     element: <Signup />,
   },
   {
-    path: "login",
+    path: "/login",
     element: <Login />,
   },
+
   {
     path: "/dashboard",
     element: (

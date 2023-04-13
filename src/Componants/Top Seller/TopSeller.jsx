@@ -1,6 +1,5 @@
 import React from "react";
-import { AiFillCheckCircle } from "react-icons/ai";
-import { RiCheckboxBlankCircleLine } from "react-icons/ri";
+import { MdVerified } from "react-icons/md";
 
 const TopSeller = ({ Seller }) => {
   const { icon, name, content } = Seller;
@@ -10,7 +9,7 @@ const TopSeller = ({ Seller }) => {
         className="mb-[-16px]  me-[-4px] float-right text-3xl text-blue-700 
      "
       /> */}
-      <AiFillCheckCircle
+      <MdVerified
         className="mb-[-16px]  me-[-4px] float-right text-3xl text-blue-700 
      "
       />
