@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "../../../public/vite.svg";
 import { BsCart } from "react-icons/bs";
 import { FiMenu } from "react-icons/fi";
+import { ImCross } from "react-icons/im";
 
 const Navigation = () => {
   const [scroll, setScroll] = useState(false);
@@ -23,6 +24,7 @@ const Navigation = () => {
   };
   const handleMenuToggle = () => {
     setOpen(!open);
+    console.log("hello");
   };
   return (
     <nav
@@ -32,7 +34,7 @@ const Navigation = () => {
           : "bg-transparent text-white"
       } fixed w-full z-50`}
     >
-      <div className="container mx-auto px-4 py-5 flex items-center justify-around ms-20">
+      <div className="container mx-auto px-4 py-5 flex items-center justify-around ">
         <Link to="/">
           <img src={logo} alt="logo" className="w-7" />
         </Link>
@@ -61,8 +63,6 @@ const Navigation = () => {
             </div>
           </Link>
         </div>
-
-
         <div>
           <Link to="/login" className="mx-3 font-medium">
             <button className="bg-blue-950 rounded-3xl mt-[-10px] px-4 py-2 hover:bg-pink-800 text-white">
@@ -75,21 +75,19 @@ const Navigation = () => {
             </button>
           </Link>
         </div>
-
-
         <div className="md:hidden flex items-center">
           <button
             onClick={handleMenuToggle}
             className={`${
-              open ? "text-black" : "text-white"
+              open ? "text-white" : "text-white"
             } focus:outline-none hover:text-gray-400`}
           >
-            <FiMenu size={24} />
+            {open ? <ImCross size={24} /> : <FiMenu size={24} />}
           </button>
         </div>
       </div>
       <div
-        className={`${open ? "block" : "hidden"} md:hidden bg-white text-black`}
+        className={`${open ? "block" : "hidden"} md:hidden text-black bg-white`}
       >
         <Link to="/" className="block my-2 font-medium text-center">
           Home
@@ -108,12 +106,6 @@ const Navigation = () => {
         </Link>
         <Link to="/cart" className="block my-2 font-medium text-center">
           Cart (10)
-        </Link>
-        <Link to="/login" className="block my-2 font-medium text-center">
-          Login
-        </Link>
-        <Link to="/signup" className="block my-2 font-medium text-center">
-          SignUp
         </Link>
       </div>
     </nav>
