@@ -3,8 +3,15 @@ import { Link } from "react-router-dom";
 import logo from "../../../public/vite.svg";
 import { BsCart } from "react-icons/bs";
 import { FiMenu } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "firebase/auth";
+import auth from "../../firebase/firebase.config";
+import { toast } from "react-hot-toast";
+import { userSignOut } from "../../app/features/Auth/authSlice";
 
 const Navigation = () => {
+  const { user: { email } } = useSelector((state) => state.auth)
+  const dispatch = useDispatch();
   const [scroll, setScroll] = useState(false);
   const [open, setOpen] = useState(false);
   useEffect(() => {
@@ -24,13 +31,20 @@ const Navigation = () => {
   const handleMenuToggle = () => {
     setOpen(!open);
   };
+
+  const logOut = () => {
+    signOut(auth)
+      .then(() => {
+        dispatch(userSignOut())
+        toast.success("Log Out Success")
+      })
+  }
   return (
     <nav
-      className={`${
-        scroll
-          ? "bg-white shadow-md text-gray-700 hover:text-black"
-          : "bg-transparent text-white"
-      } fixed w-full z-50`}
+      className={`${scroll
+        ? "bg-white shadow-md text-gray-700 hover:text-black"
+        : "bg-transparent text-white"
+        } fixed w-full z-50`}
     >
       <div className="container mx-auto px-4 py-5 flex items-center justify-around ms-20">
         <Link to="/">
@@ -64,25 +78,28 @@ const Navigation = () => {
 
 
         <div>
-          <Link to="/login" className="mx-3 font-medium">
-            <button className="bg-blue-950 rounded-3xl mt-[-10px] px-4 py-2 hover:bg-pink-800 text-white">
-              Login
-            </button>
-          </Link>
-          <Link to="/signup" className="mx-3 font-medium">
-            <button className="bg-black rounded-3xl mt-[-10px] px-3 py-2 hover:bg-blue-950 border-2 border-white text-white">
-              SignUp
-            </button>
-          </Link>
+          {
+            !email ? <> <Link to="/login" className="mx-3 font-medium">
+              <button className="bg-blue-950 rounded-3xl mt-[-10px] px-4 py-2 hover:bg-pink-800 text-white">
+                Login
+              </button>
+            </Link>
+              <Link to="/signup" className="mx-3 font-medium">
+                <button className="bg-black rounded-3xl mt-[-10px] px-3 py-2 hover:bg-blue-950 border-2 border-white text-white">
+                  SignUp
+                </button>
+              </Link>
+            </> :
+              <button className="bg-blue-950 rounded-3xl mt-[-10px] px-4 py-2 hover:bg-pink-800 text-white" onClick={logOut}>Log Out</button>
+          }
         </div>
 
 
         <div className="md:hidden flex items-center">
           <button
             onClick={handleMenuToggle}
-            className={`${
-              open ? "text-black" : "text-white"
-            } focus:outline-none hover:text-gray-400`}
+            className={`${open ? "text-black" : "text-white"
+              } focus:outline-none hover:text-gray-400`}
           >
             <FiMenu size={24} />
           </button>

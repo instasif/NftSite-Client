@@ -18,43 +18,31 @@ const initialValues = {
 
 const Signup = () => {
   const dispatch = useDispatch()
-  const [userRegister, { isLoading, isSuccess, error, data }] = useRegisterMutation();
+  const [userRegister, { isLoading, isSuccess, isError, error, data }] = useRegisterMutation();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
     validationSchema: signupSchema,
     onSubmit: ({ email, password, name }, action) => {
+
       dispatch(createUser({ email, password }))
         .then(() => userRegister({ email, name, role: 'buyer' }))
-      if (isLoading) {
-        toast.loading("Posting....", { id: email })
-      }
-      if (isSuccess) {
-        toast.success("Sign Up success", { id: email })
-      }
-      console.log(isLoading)
-      console.log(isSuccess)
-      console.log(error)
-      console.log(data)
-
       action.resetForm();
+
     },
   });
-  console.log(isLoading)
-  console.log(isSuccess)
-  console.log(error)
-  console.log(data)
 
-  // useEffect(() => {
-  //   fetch("http://localhost:5000/user", {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({ email: "ajob" })
-  //   })
-  //     .then(res => res.json())
-  //     .then(data => console.log(data))
-  // }, [])
+  if (isLoading) {
+    toast.loading("Posting....", { id: email })
+  }
+
+  if (isSuccess) {
+    console.log('data post hoye geche')
+    toast.success("Sign Up success", { id: email })
+  }
+
+  if (isError) {
+    toast.success(error, { id: email })
+  }
 
   return (
     <div>
