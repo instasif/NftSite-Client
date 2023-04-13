@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth"
 import auth from "../../../firebase/firebase.config"
+import { toast } from "react-hot-toast";
 const initialState = {
     user: { name: "", email: "", role: "" },
     isLoading: false,
@@ -56,17 +57,20 @@ const authSlice = createSlice({
                 state.error = action.error.message;
                 state.user.name = "";
                 state.user.email = "";
+                toast.error(action.error.message)
             })
             .addCase(loginUser.pending, (state) => {
                 state.isLoading = true;
                 state.isError = false;
                 state.error = "";
+
             })
             .addCase(loginUser.fulfilled, (state, { payload }) => {
                 state.isLoading = false;
                 state.isError = false;
                 state.error = "";
                 state.user.email = payload;
+                toast.success("Log In Success")
             })
             .addCase(loginUser.rejected, (state, action) => {
                 state.isLoading = false;
@@ -74,6 +78,7 @@ const authSlice = createSlice({
                 state.error = action.error.message;
                 state.user.name = "";
                 state.user.email = "";
+                toast.error(action.error.message)
             })
             .addCase(googleLogin.pending, (state) => {
                 state.isLoading = true;

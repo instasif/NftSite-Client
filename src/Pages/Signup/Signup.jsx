@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import tiger from "../../assets/img/tiger.png";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
@@ -6,6 +6,9 @@ import { signupSchema } from "../../schemas";
 import { useDispatch } from "react-redux";
 import { createUser } from "../../app/features/Auth/authSlice";
 import Navigation from "../../shared/Header/Navigation";
+import { toast } from "react-hot-toast";
+import { useRegisterMutation } from "../../app/features/user/userApi";
+
 
 const initialValues = {
   name: "",
@@ -15,15 +18,43 @@ const initialValues = {
 
 const Signup = () => {
   const dispatch = useDispatch()
+  const [userRegister, { isLoading, isSuccess, error, data }] = useRegisterMutation();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
     validationSchema: signupSchema,
     onSubmit: ({ email, password, name }, action) => {
       dispatch(createUser({ email, password }))
+        .then(() => userRegister({ email, name, role: 'buyer' }))
+      if (isLoading) {
+        toast.loading("Posting....", { id: email })
+      }
+      if (isSuccess) {
+        toast.success("Sign Up success", { id: email })
+      }
+      console.log(isLoading)
+      console.log(isSuccess)
+      console.log(error)
+      console.log(data)
 
       action.resetForm();
     },
   });
+  console.log(isLoading)
+  console.log(isSuccess)
+  console.log(error)
+  console.log(data)
+
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/user", {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({ email: "ajob" })
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => console.log(data))
+  // }, [])
 
   return (
     <div>

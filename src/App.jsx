@@ -20,7 +20,7 @@ const App = () => {
   return (
     <div>
       <RouterProvider router={router} />
-      <Toaster position="bottom-center" reverseOrder={false} />
+      <Toaster />
     </div>
   );
 };
