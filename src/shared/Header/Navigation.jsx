@@ -30,7 +30,7 @@ const Navigation = () => {
         scroll
           ? "bg-white shadow-md text-gray-700 hover:text-black"
           : "bg-transparent text-white"
-      } fixed w-full z-50`}
+      } fixed w-full z-50 transition duration-500`}
     >
       <div className="container mx-auto px-4 py-5 flex items-center justify-between">
         <Link to="/">
