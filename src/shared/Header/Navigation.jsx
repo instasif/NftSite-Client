@@ -32,11 +32,11 @@ const Navigation = () => {
           : "bg-transparent text-white"
       } fixed w-full z-50`}
     >
-      <div className="container mx-auto px-4 py-5 flex items-center justify-between">
+      <div className="container mx-auto px-4 py-5 flex items-center justify-around ms-20">
         <Link to="/">
           <img src={logo} alt="logo" className="w-7" />
         </Link>
-        <div className="hidden md:flex md:items-center">
+        <div className="hidden md:flex md:items-center md:justify-center">
           <Link to="/" className="mx-3 font-medium">
             Home
           </Link>
@@ -60,17 +60,23 @@ const Navigation = () => {
               </p>
             </div>
           </Link>
+        </div>
+
+
+        <div>
           <Link to="/login" className="mx-3 font-medium">
-            <button className="bg-blue-950 rounded-3xl mt-[-10px] px-4 py-2 hover:bg-pink-800">
+            <button className="bg-blue-950 rounded-3xl mt-[-10px] px-4 py-2 hover:bg-pink-800 text-white">
               Login
             </button>
           </Link>
           <Link to="/signup" className="mx-3 font-medium">
-            <button className="bg-black rounded-3xl mt-[-10px] px-4 py-2 hover:bg-blue-950 border-2 border-white">
+            <button className="bg-black rounded-3xl mt-[-10px] px-3 py-2 hover:bg-blue-950 border-2 border-white text-white">
               SignUp
             </button>
           </Link>
         </div>
+
+
         <div className="md:hidden flex items-center">
           <button
             onClick={handleMenuToggle}
