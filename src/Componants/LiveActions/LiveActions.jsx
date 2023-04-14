@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AiFillCaretRight } from 'react-icons/ai'
 import LiveActionCard from './LiveActionCard';
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 
 const LiveActions = () => {
     const [products, setProducts] = useState([]);

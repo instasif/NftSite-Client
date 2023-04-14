@@ -1,6 +1,31 @@
 import React from "react";
+import { useUpdateUserMutation } from "../../app/features/user/userApi";
+import { useSelector } from "react-redux";
 
 const SellerForm = () => {
+  const { user: { email } } = useSelector((state) => state.auth);
+  const [setSeller, { isSuccess }] = useUpdateUserMutation();
+
+  const submit = (e) => {
+    e.preventDefault();
+    const collectionName = e.target.collectionName.value;
+    const bio = e.target.bio.value;
+    const chain = e.target.chain.value;
+    const coverPhoto = e.target.coverPhoto.value;
+    const data = {
+      email,
+      collectionName,
+      bio,
+      chain,
+      coverPhoto,
+      role: 'seller',
+    }
+    setSeller(data)
+
+
+  }
+
+
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-lg">
@@ -13,6 +38,7 @@ const SellerForm = () => {
         </p>
 
         <form
+          onSubmit={submit}
           action=""
           className="mt-6 mb-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
         >

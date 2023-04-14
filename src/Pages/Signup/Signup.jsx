@@ -36,7 +36,6 @@ const Signup = () => {
   }
 
   if (isSuccess) {
-    console.log('data post hoye geche')
     toast.success("Sign Up success", { id: email })
   }
 

@@ -4,8 +4,15 @@ import logo from "../../../public/vite.svg";
 import { BsCart } from "react-icons/bs";
 import { FiMenu } from "react-icons/fi";
 import { ImCross } from "react-icons/im";
+import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "firebase/auth";
+import { userSignOut } from "../../app/features/Auth/authSlice";
+import auth from "../../firebase/firebase.config";
+import { toast } from "react-hot-toast";
 
 const Navigation = () => {
+  const { email, role } = useSelector((state) => state.auth.user)
+  const dispatch = useDispatch();
   const [scroll, setScroll] = useState(false);
   const [open, setOpen] = useState(false);
   useEffect(() => {
@@ -24,15 +31,21 @@ const Navigation = () => {
   };
   const handleMenuToggle = () => {
     setOpen(!open);
-    console.log("hello");
   };
+
+  const logOut = () => {
+    signOut(auth)
+      .then(() => {
+        dispatch(userSignOut())
+        toast.success("Log Out Success")
+      })
+  }
   return (
     <nav
-      className={`${
-        scroll
-          ? "bg-white shadow-md text-gray-700 hover:text-black"
-          : "bg-transparent text-white"
-      } fixed w-full z-50 transition duration-500`}
+      className={`${scroll
+        ? "bg-white shadow-md text-gray-700 hover:text-black"
+        : "bg-transparent text-white"
+        } fixed w-full z-50 transition duration-500`}
     >
       <div className="container mx-auto px-4 py-5 flex items-center justify-around ">
         <Link to="/">
@@ -41,6 +54,9 @@ const Navigation = () => {
         <div className="hidden md:flex md:items-center md:justify-center">
           <Link to="/" className="mx-3 font-medium">
             Home
+          </Link>
+          <Link to="/allNfts" className="mx-3 font-medium">
+            All Nfts
           </Link>
           <Link to="/" className="mx-3 font-medium">
             Live Actions
@@ -64,23 +80,29 @@ const Navigation = () => {
           </Link>
         </div>
         <div>
-          <Link to="/login" className="mx-3 font-medium">
-            <button className="bg-blue-950 rounded-3xl mt-[-10px] px-4 py-2 hover:bg-pink-800 text-white">
-              Login
-            </button>
-          </Link>
-          <Link to="/sellerForm" className="mx-3 font-medium">
-            <button className="bg-black rounded-3xl mt-[-10px] px-3 py-2 hover:bg-blue-950 border-2 border-white text-white">
-              Become Seller
-            </button>
-          </Link>
+          {
+            !email ? <> <Link to="/login" className="mx-3 font-medium">
+              <button className="bg-blue-950 rounded-3xl mt-[-10px] px-4 py-2 hover:bg-pink-800 text-white">
+                Login
+              </button>
+            </Link>
+            </> :
+              <button className="bg-blue-950 rounded-3xl mt-[-10px] px-4 py-2 hover:bg-pink-800 text-white" onClick={logOut}>Log Out</button>
+          }
+          {
+            email && role === 'buyer' && <>
+
+              <Link to='/sellerForm'><button className="bg-black rounded-3xl mt-[-10px] px-3 py-2 hover:bg-blue-950 border-2 border-white text-white">
+                Become Seller
+              </button></Link>
+            </>
+          }
         </div>
         <div className="md:hidden flex items-center">
           <button
             onClick={handleMenuToggle}
-            className={`${
-              open ? "text-white" : "text-white"
-            } focus:outline-none hover:text-gray-400`}
+            className={`${open ? "text-white" : "text-white"
+              } focus:outline-none hover:text-gray-400`}
           >
             {open ? <ImCross size={24} /> : <FiMenu size={24} />}
           </button>
