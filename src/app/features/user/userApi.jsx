@@ -9,7 +9,19 @@ const userApi = apiSlice.injectEndpoints({
                 body: user
             }),
         }),
+        updateUser: builder.mutation({
+            query: (data) => ({
+                method: 'PATCH',
+                url: '/updateUser',
+                body: data
+            })
+        }),
+        // getUserByEmail: builder.query({
+        //     query: (email) => ({
+        //         url: `/users/${email}`,
+        //     })
+        // })
     }),
 });
 
-export const { useRegisterMutation } = userApi;
+export const { useRegisterMutation, useUpdateUserMutation, } = userApi;

@@ -12,8 +12,8 @@ const AllNfts = () => {
     }
 
     return (
-        <div>
-            <div className='max-w-7xl mx-auto my-10'>
+        <>
+            <div className='py-16 max-w-7xl mx-auto '>
                 <h1 className='text-center font-semibold text-3xl my-5'>All Nfts</h1>
                 <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 my-5'>
                     {
@@ -21,7 +21,7 @@ const AllNfts = () => {
                     }
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

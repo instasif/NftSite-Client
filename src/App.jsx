@@ -5,16 +5,15 @@ import router from './router/routes/Route';
 import { onAuthStateChanged } from 'firebase/auth';
 import auth from './firebase/firebase.config';
 import { useDispatch } from 'react-redux'
-import { setUser } from './app/features/Auth/authSlice';
+import { getUserByEmail, setUser } from './app/features/Auth/authSlice';
 
 
 const App = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      console.log(user);
       if (user) {
-        dispatch(setUser({ email: user.email, name: user.displayName }))
+        dispatch(getUserByEmail(user.email))
       }
     })
   }, [])

@@ -25,6 +25,11 @@ export const googleLogin = createAsyncThunk("auth/googleLogin", async () => {
     const data = await signInWithPopup(auth, googleProvider)
     return data.user;
 });
+export const getUserByEmail = createAsyncThunk("auth/getUserByEmail", async (email) => {
+    const res = await fetch(`http://localhost:5000/users/${email}`)
+    const data = await res.json();
+    return data;
+});
 
 const authSlice = createSlice({
     name: 'auth',
@@ -35,8 +40,7 @@ const authSlice = createSlice({
             state.user.email = "";
         },
         setUser: (state, { payload }) => {
-            state.user.name = payload.name;
-            state.user.email = payload.email;
+            state.user = payload;
         }
     },
     extraReducers: (builder) => {
@@ -93,6 +97,24 @@ const authSlice = createSlice({
                 state.user.email = payload.payload.email;
             })
             .addCase(googleLogin.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.error = action.error.message;
+                state.user.name = "";
+                state.user.email = "";
+            })
+            .addCase(getUserByEmail.pending, (state) => {
+                state.isLoading = true;
+                state.isError = false;
+                state.error = "";
+            })
+            .addCase(getUserByEmail.fulfilled, (state, { payload }) => {
+                state.isLoading = false;
+                state.isError = false;
+                state.error = "";
+                state.user = payload;
+            })
+            .addCase(getUserByEmail.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.error = action.error.message;

@@ -23,6 +23,10 @@ const router = createBrowserRouter([
         element: <NftDetails />,
       },
       {
+        path: "/allNfts",
+        element: <AllNfts />,
+      },
+      {
         path: "/sellerForm",
         element: <SellerForm />
       },
