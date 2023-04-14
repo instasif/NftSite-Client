@@ -7,6 +7,7 @@ import Signup from "../../Pages/Signup/Signup";
 import Login from "../../Pages/Login/Login";
 import NftDetails from "../../Pages/NftDetails/NftDetails";
 import AllNfts from "../../Pages/AllNfts/AllNfts";
+import SellerForm from "../../Pages/SellerForm/SellerForm";
 
 const router = createBrowserRouter([
   {
@@ -18,9 +19,13 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: 'details/:id',
-        element: <NftDetails />
-      }
+        path: "details/:id",
+        element: <NftDetails />,
+      },
+      {
+        path: "/sellerForm",
+        element: <SellerForm />
+      },
     ],
   },
   {
