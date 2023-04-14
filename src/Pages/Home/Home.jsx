@@ -10,9 +10,9 @@ const Home = () => {
   return (
     <div>
       <Hero />
+      <TodaysPic />
       <LiveActions />
       <TopSellers />
-      <TodaysPic />
       <PopularCollections />
       <CreateAndSellYourNFTs />
     </div>
