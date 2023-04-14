@@ -3,7 +3,7 @@ import { RiShoppingBagLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
 const TodayPicCard = ({ product }) => {
-  const { creatorName, creatorImage, image, price, _id } = product;
+  const { Owner, creatorImage, image, priceETH, _id } = product;
   return (
     <div className="mx-auto border shadow-lg rounded-xl w-60">
       <div className="p-3">
@@ -19,12 +19,12 @@ const TodayPicCard = ({ product }) => {
               />
               <div>
                 <h6 className="text-xs text-gray-400">Creator</h6>
-                <p className="font-bold">{creatorName}</p>
+                <p className="font-bold">{Owner}</p>
               </div>
             </div>
             <div>
               <h6 className="text-xs text-gray-400">Current Bid</h6>
-              <p className="font-bold">{price}ETH</p>
+              <p className="font-bold">{priceETH}ETH</p>
             </div>
           </div>
         </Link>

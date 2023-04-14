@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import TodayPicCard from './TodayPicCard';
 import { AiFillCaretRight } from 'react-icons/ai'
+import { useGetProductsQuery } from '../../app/features/Products/productsApi';
 
 const TodaysPic = () => {
-    const [products, setProducts] = useState([]);
+    const { data, isLoading } = useGetProductsQuery()
+    const products = data || [];
 
-    useEffect(() => {
-        fetch("products.json")
-          .then((res) => res.json())
-          .then((data) => setProducts(data));
-    }, [])
+    if (isLoading) {
+        return <h1 className='text-center font-semibold text-2xl my-5'>Loading....</h1>
+    }
+
     return (
         <div className='max-w-7xl m-5'>
             <div className='flex justify-between items-center mx-16'>
