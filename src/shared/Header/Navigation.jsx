@@ -69,9 +69,9 @@ const Navigation = () => {
               Login
             </button>
           </Link>
-          <Link to="/signup" className="mx-3 font-medium">
+          <Link to="/sellerForm" className="mx-3 font-medium">
             <button className="bg-black rounded-3xl mt-[-10px] px-3 py-2 hover:bg-blue-950 border-2 border-white text-white">
-              SignUp
+              Become Seller
             </button>
           </Link>
         </div>
