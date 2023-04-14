@@ -6,6 +6,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Signup from "../../Pages/Signup/Signup";
 import Login from "../../Pages/Login/Login";
 import NftDetails from "../../Pages/NftDetails/NftDetails";
+import AllNfts from "../../Pages/AllNfts/AllNfts";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />,
+  },
+  {
+    path: "/allnfts",
+    element: <AllNfts />,
   },
   {
     path: "/login",

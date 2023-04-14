@@ -42,7 +42,7 @@ const Navigation = () => {
   return (
     <nav
       className={`${scroll
-        ? "bg-white shadow-md text-gray-700 hover:text-black"
+        ? "bg-white shadow-md text-gray-700 hover:text-black transition duration-500"
         : "bg-transparent text-white"
         } fixed w-full z-50`}
     >
@@ -53,6 +53,9 @@ const Navigation = () => {
         <div className="hidden md:flex md:items-center md:justify-center">
           <Link to="/" className="mx-3 font-medium">
             Home
+          </Link>
+          <Link to="/allnfts" className="mx-3 font-medium">
+            All Nfts
           </Link>
           <Link to="/" className="mx-3 font-medium">
             Live Actions
