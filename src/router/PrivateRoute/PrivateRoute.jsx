@@ -1,6 +1,7 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux"
+import Loading from "../../shared/Loading/Loading";
 
 const PrivateRoute = ({ children }) => {
   const { user, isLoading } = useSelector((state) => state.auth);
@@ -8,7 +9,7 @@ const PrivateRoute = ({ children }) => {
 
 
   if (isLoading) {
-    return <p>Loading......</p>;
+    return <Loading />;
   }
 
   if (user.email) {
