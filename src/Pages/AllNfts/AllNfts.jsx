@@ -1,14 +1,14 @@
 import React from 'react';
 import { useGetProductsQuery } from '../../app/features/Products/productsApi';
 import TodayPicCard from '../../Componants/TodaysPic/TodayPicCard';
-import Navigation from '../../shared/Header/Navigation';
+import Loading from '../../shared/Loading/Loading';
 
 const AllNfts = () => {
     const { data, isLoading } = useGetProductsQuery()
     const products = data || [];
 
     if (isLoading) {
-        return <h1 className='text-center font-semibold text-2xl my-5'>Loading....</h1>
+        return <Loading />
     }
 
     return (

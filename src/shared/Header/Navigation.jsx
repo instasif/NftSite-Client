@@ -87,7 +87,7 @@ const Navigation = () => {
               </button>
             </Link>
             </> :
-              <button className="bg-blue-950 rounded-3xl mt-[-10px] px-4 py-2 hover:bg-pink-800 text-white" onClick={logOut}>Log Out</button>
+              <button className="bg-blue-950 rounded-3xl mt-[-10px] px-4 py-2 w-36 hover:bg-pink-800 text-white" onClick={logOut}>Log Out</button>
           }
           {
             email && role === 'buyer' && <>
