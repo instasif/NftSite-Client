@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useUpdateUserMutation } from "../../app/features/user/userApi";
 import { useSelector } from "react-redux";
 
 const SellerForm = () => {
-  const { user: { email } } = useSelector((state) => state.auth);
+  const [coverPhoto, setCoverPhoto] = useState("")
+  const {
+    user: { email },
+  } = useSelector((state) => state.auth);
   const [setSeller, { isSuccess }] = useUpdateUserMutation();
 
   const submit = (e) => {
@@ -11,20 +14,34 @@ const SellerForm = () => {
     const collectionName = e.target.collectionName.value;
     const bio = e.target.bio.value;
     const chain = e.target.chain.value;
-    const coverPhoto = e.target.coverPhoto.value;
+    const photo = e.target.coverPhoto.files[0];
+
+    const formData = new FormData();
+    formData.append("image", photo);
+
+    const url = `https://api.imgbb.com/1/upload?key=${
+      import.meta.env.VITE_API_KEY_imgbbKey
+    }`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setCoverPhoto(data.data.display_url);
+      })
+      .catch((err) => console.error(err));
+
     const data = {
       email,
       collectionName,
       bio,
       chain,
-      coverPhoto,
-      role: 'seller',
-    }
-    setSeller(data)
-
-
-  }
-
+      coverPhoto: coverPhoto,
+      role: "seller",
+    };
+    setSeller(data);
+  };
 
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
@@ -43,13 +60,14 @@ const SellerForm = () => {
           className="mt-6 mb-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
         >
           <label
-            for="UserCollectionName"
+            htmlFor="UserCollectionName"
             className="relative block overflow-hidden border-b border-gray-200 pt-3 focus-within:border-blue-600"
           >
             <input
               type="text"
               id="UserCollectionName"
               name="collectionName"
+              required
               placeholder="Collection Name"
               className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
             />
@@ -60,13 +78,14 @@ const SellerForm = () => {
           </label>
 
           <label
-            for="UserBio"
+            htmlFor="UserBio"
             className="relative block overflow-hidden border-b border-gray-200 pt-3 focus-within:border-blue-600"
           >
             <input
               type="text"
               id="UserBio"
               name="bio"
+              required
               placeholder="Bio"
               className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
             />
@@ -77,12 +96,13 @@ const SellerForm = () => {
           </label>
 
           <label
-            for="UserChain"
+            htmlFor="UserChain"
             className="relative block overflow-hidden border-b border-gray-200 pt-3 focus-within:border-blue-600"
           >
             <input
               type="text"
               id="UserChain"
+              required
               name="chain"
               placeholder="Chain"
               className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
@@ -93,22 +113,18 @@ const SellerForm = () => {
             </span>
           </label>
 
-          <label
-            for="UserCoverPhoto"
-            className="relative block overflow-hidden border-b border-gray-200 pt-3 focus-within:border-blue-600"
-          >
+          <div>
+            <label htmlFor="image" className="block mb-2 text-sm">
+              Cover Photo:
+            </label>
             <input
-              type="text"
-              id="UserCoverPhoto"
+              required
+              type="file"
+              id="image"
               name="coverPhoto"
-              placeholder="Cover Photo"
-              className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+              accept="image/*"
             />
-
-            <span className="absolute left-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
-              Cover Photo
-            </span>
-          </label>
+          </div>
 
           <button
             type="submit"
