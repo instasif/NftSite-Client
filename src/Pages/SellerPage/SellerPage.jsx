@@ -2,7 +2,7 @@ import React from "react";
 import Banner from "./Banner";
 import DataDescription from "./DataDescription";
 
-const Seller = () => {
+const SellerPage = () => {
   return (
     <div>
       <Banner />
@@ -11,4 +11,4 @@ const Seller = () => {
   );
 };
 
-export default Seller;
+export default SellerPage;
