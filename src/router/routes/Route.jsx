@@ -8,11 +8,13 @@ import Login from "../../Pages/Login/Login";
 import NftDetails from "../../Pages/NftDetails/NftDetails";
 import AllNfts from "../../Pages/AllNfts/AllNfts";
 import SellerForm from "../../Pages/SellerForm/SellerForm";
+import ErrorPage from "../../shared/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
