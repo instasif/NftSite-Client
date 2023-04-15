@@ -9,8 +9,8 @@ import { FiArrowUpRight } from "react-icons/fi";
 const NftPlacement = () => {
     return (
       <div className="relative mx-auto max-w-screen-xl px-4 py-8">
-        <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2">
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-1">
+        <div className="grid grid-cols-1 items-start md:grid-cols-2">
+          <div className="">
             <img
               alt="Les Paul"
               src="https://public.nftstatic.com/static/nft/res/nft-cex/S3/1681052768645_2xoeghs6v6cux45zsq6r1l7gbnnsg294.png"

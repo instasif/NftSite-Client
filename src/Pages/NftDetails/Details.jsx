@@ -26,12 +26,12 @@ const Details = () => {
                 </span>
               </summary>
 
-              <nav
+              <div
                 aria-label="Users Nav"
                 className="mt-2 flex flex-col space-y-1 px-4"
               >
                 <Detail />
-              </nav>
+              </div>
             </details>
           </thead>
         </table>
