@@ -26,7 +26,7 @@ const MidHead = () => {
         >
           Price low to high
           <svg
-            class="w-4 h-4 ml-2"
+            className="w-4 h-4 ml-2"
             aria-hidden="true"
             fill="none"
             stroke="currentColor"
@@ -44,16 +44,16 @@ const MidHead = () => {
 
         <div
           id="dropdownHover"
-          class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+          className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
         >
           <ul
-            class="py-2 text-sm text-gray-700 dark:text-gray-200"
+            className="py-2 text-sm text-gray-700 dark:text-gray-200"
             aria-labelledby="dropdownHoverButton"
           >
             <li>
               <a
                 href="#"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 Dashboard
               </a>
@@ -61,7 +61,7 @@ const MidHead = () => {
             <li>
               <a
                 href="#"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 Settings
               </a>
@@ -69,7 +69,7 @@ const MidHead = () => {
             <li>
               <a
                 href="#"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 Earnings
               </a>
@@ -77,7 +77,7 @@ const MidHead = () => {
             <li>
               <a
                 href="#"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 Sign out
               </a>

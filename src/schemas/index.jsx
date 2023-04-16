@@ -1,9 +1,9 @@
 import * as Yup from "yup";
 
-const signuppasswordRegex =
-  /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
+// const signuppasswordRegex =
+//   /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
 
-const loginpasswordRegex =
+const passwordRegex =
   /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
 
 export const signupSchema = Yup.object({
@@ -12,10 +12,10 @@ export const signupSchema = Yup.object({
   password: Yup.string()
     .min(6, "Password must be at least 6 characters long")
     .matches(
-      signuppasswordRegex,
+      passwordRegex,
       "Password must include an uppercase letter, a number, and a special character"
     )
-    .required("Please enter your password")
+    .required("Please enter your password"),
 });
 
 export const loginpSchema = Yup.object({
@@ -23,8 +23,8 @@ export const loginpSchema = Yup.object({
   password: Yup.string()
     .min(6, "Password must be at least 6 characters long")
     .matches(
-      loginpasswordRegex,
+      passwordRegex,
       "Password must include an uppercase letter, a number, and a special character"
     )
-    .required("Please enter your password")
+    .required("Please enter your password"),
 });

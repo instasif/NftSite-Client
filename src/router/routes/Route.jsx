@@ -9,6 +9,8 @@ import AllNfts from "../../Pages/AllNfts/AllNfts";
 import SellerForm from "../../Pages/SellerForm/SellerForm";
 import ErrorPage from "../../shared/ErrorPage/ErrorPage";
 import DashboardLayout from "../../layouts/DashboardLayout";
+import UploadNftPage from "../../Pages/UploadNftPage/UploadNftPage";
+import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +32,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/sellerForm",
-        element: <SellerForm />
+        element: <SellerForm />,
+      },
+      {
+        path: "/allnfts",
+        element: <AllNfts />,
       },
     ],
   },
@@ -39,18 +45,22 @@ const router = createBrowserRouter([
     element: <Signup />,
   },
   {
-    path: "/allnfts",
-    element: <AllNfts />,
-  },
-  {
     path: "/login",
     element: <Login />,
   },
   {
     path: "/dashboard",
-    element: (
-        <DashboardLayout />
-    ),
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "",
+        element: <Dashboard />,
+      },
+      {
+        path: "uploadNfts",
+        element: <UploadNftPage />,
+      },
+    ],
   },
 ]);
 
