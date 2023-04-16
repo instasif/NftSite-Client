@@ -13,8 +13,13 @@ const productsApi = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: product
             })
+        }),
+        productById: builder.query({
+            query: (id) => ({
+                url: `/nft/${id}`
+            })
         })
     })
 })
 
-export const { useGetProductsQuery, useUploadNftMutation } = productsApi;
+export const { useGetProductsQuery, useUploadNftMutation, useProductByIdQuery } = productsApi;

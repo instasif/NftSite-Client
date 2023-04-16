@@ -2,7 +2,7 @@ import apiSlice from "../api/apiSlice";
 
 const fourProducts = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getProducts: builder.query({
+    getFourProducts: builder.query({
       query: () => ({
         url: "/nfts",
       }),

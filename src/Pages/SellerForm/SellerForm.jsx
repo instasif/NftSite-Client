@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { useUpdateUserMutation } from "../../app/features/user/userApi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { getUserByEmail } from "../../app/features/Auth/authSlice";
 
 const SellerForm = () => {
   const [coverPhoto, setCoverPhoto] = useState("");
+  const dispatch = useDispatch()
   const {
     user: { email },
   } = useSelector((state) => state.auth);
-  const [setSeller, { isSuccess }] = useUpdateUserMutation();
+  const [setSeller] = useUpdateUserMutation();
+  const navigate = useNavigate()
 
   const submit = (e) => {
     e.preventDefault();
@@ -19,9 +24,8 @@ const SellerForm = () => {
     const formData = new FormData();
     formData.append("image", photo);
 
-    const url = `https://api.imgbb.com/1/upload?key=${
-      import.meta.env.VITE_API_KEY_imgbbKey
-    }`;
+    const url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_API_KEY_imgbbKey
+      }`;
     fetch(url, {
       method: "POST",
       body: formData,
@@ -40,10 +44,18 @@ const SellerForm = () => {
       coverPhoto: coverPhoto,
       role: "seller",
     };
-    setSeller(data);
+    setSeller(data)
+      .then(() => {
+        toast.success('You are seller now')
+        dispatch(getUserByEmail(email))
+        navigate('/')
+      })
 
-    form.reset();
   };
+
+
+
+
 
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">

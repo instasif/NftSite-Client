@@ -25,11 +25,12 @@ const Signup = () => {
     validationSchema: signupSchema,
     onSubmit: ({ email, password, name }, action) => {
 
+
       dispatch(createUser({ email, password }))
         .then(() => {
-          userRegister({ email, name, role: 'buyer' })
-          console.log(email)
+          userRegister({ email, password, role: 'buyer' })
           dispatch(getUserByEmail(email))
+
         })
       action.resetForm();
 
@@ -160,6 +161,22 @@ const Signup = () => {
                 ) : null}
               </div>
             </div>
+
+            {/* <div className="bg-white p-2 rounded-lg">
+              <label htmlFor="image" className="block mb-2 text-sm text-gray-500">
+                Cover Photo
+              </label>
+              <input
+                required
+                type="file"
+                id="image"
+                name="image"
+                value={values.image}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                accept="image/*"
+              />
+            </div> */}
 
             <div className="flex items-center justify-between">
               <p className="text-sm text-white">
