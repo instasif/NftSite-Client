@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import {
-  Bars3Icon,
-} from "@heroicons/react/24/solid";
+import { Bars3Icon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
@@ -52,9 +50,9 @@ const Sidebar = () => {
           {/* Nav Items */}
           <div className="flex flex-col justify-between flex-1 mt-6">
             <nav>
-              <a
+              <Link
+                to="/dashboard/uploadNfts"
                 className="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-800 dark:text-gray-200"
-                href="#"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +60,7 @@ const Sidebar = () => {
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  class="w-6 h-6"
+                  className="w-6 h-6"
                 >
                   <path
                     stroke-linecap="round"
@@ -70,9 +68,8 @@ const Sidebar = () => {
                     d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
                   />
                 </svg>
-
                 <span className="mx-4 font-medium">Upload Nft</span>
-              </a>
+              </Link>
 
               <a
                 className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
@@ -84,7 +81,7 @@ const Sidebar = () => {
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  class="w-6 h-6"
+                  className="w-6 h-6"
                 >
                   <path
                     stroke-linecap="round"
@@ -106,7 +103,7 @@ const Sidebar = () => {
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  class="w-6 h-6"
+                  className="w-6 h-6"
                 >
                   <path
                     stroke-linecap="round"
@@ -156,7 +153,7 @@ const Sidebar = () => {
             <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
               <p>Logout</p>
             </button>
-            <Link to='/'>
+            <Link to="/">
               <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 <p>Home</p>
               </button>
