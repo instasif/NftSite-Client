@@ -1,6 +1,6 @@
 import React from 'react';
 import tiger from "../../assets/img/tiger.png"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from "formik";
 import { loginpSchema } from "../../schemas";
 import { useDispatch } from 'react-redux';
@@ -14,12 +14,14 @@ const initialValues = {
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigate();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
       validationSchema: loginpSchema,
       onSubmit: ({ email, password }, action) => {
         dispatch(loginUser({ email, password }))
+          .then(() => navigation('/'))
         action.resetForm();
       },
     });
