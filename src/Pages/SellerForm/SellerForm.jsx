@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useUpdateUserMutation } from "../../app/features/user/userApi";
 import { useSelector } from "react-redux";
-import { toast } from "react-hot-toast";
 
 const SellerForm = () => {
+  const [coverPhoto, setCoverPhoto] = useState("");
   const {
     user: { email },
   } = useSelector((state) => state.auth);
@@ -19,30 +19,31 @@ const SellerForm = () => {
     const formData = new FormData();
     formData.append("image", photo);
 
-    const url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_API_KEY_imgbbKey
-      }`;
+    const url = `https://api.imgbb.com/1/upload?key=${
+      import.meta.env.VITE_API_KEY_imgbbKey
+    }`;
     fetch(url, {
       method: "POST",
       body: formData,
     })
       .then((res) => res.json())
       .then((data) => {
-        const seller = {
-          email,
-          collectionName,
-          bio,
-          chain,
-          creatorImage: data.data.display_url,
-          role: "seller",
-        };
-        setSeller(seller);
+        setCoverPhoto(data.data.display_url);
       })
       .catch((err) => console.error(err));
-    form.reset()
+
+    const data = {
+      email,
+      collectionName,
+      bio,
+      chain,
+      coverPhoto: coverPhoto,
+      role: "seller",
+    };
+    setSeller(data);
+
+    form.reset();
   };
-  if (isSuccess) {
-    toast.success('You are seller success')
-  }
 
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
