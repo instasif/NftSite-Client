@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../layouts/Main";
-import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import Home from "../../Pages/Home/Home";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Signup from "../../Pages/Signup/Signup";
@@ -9,6 +8,7 @@ import NftDetails from "../../Pages/NftDetails/NftDetails";
 import AllNfts from "../../Pages/AllNfts/AllNfts";
 import SellerForm from "../../Pages/SellerForm/SellerForm";
 import ErrorPage from "../../shared/ErrorPage/ErrorPage";
+import DashboardLayout from "../../layouts/DashboardLayout";
 
 const router = createBrowserRouter([
   {
@@ -46,13 +46,10 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
-
   {
     path: "/dashboard",
     element: (
-      <PrivateRoute>
-        <Dashboard />
-      </PrivateRoute>
+        <DashboardLayout />
     ),
   },
 ]);
