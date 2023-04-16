@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import tiger from "../../assets/img/tiger.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { signupSchema } from "../../schemas";
 import { useDispatch } from "react-redux";
-import { createUser } from "../../app/features/Auth/authSlice";
+import { createUser, getUserByEmail } from "../../app/features/Auth/authSlice";
 import Navigation from "../../shared/Header/Navigation";
 import { toast } from "react-hot-toast";
 import { useRegisterMutation } from "../../app/features/user/userApi";
@@ -18,6 +18,7 @@ const initialValues = {
 
 const Signup = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [userRegister, { isLoading, isSuccess, isError, error, data }] = useRegisterMutation();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
@@ -25,7 +26,11 @@ const Signup = () => {
     onSubmit: ({ email, password, name }, action) => {
 
       dispatch(createUser({ email, password }))
-        .then(() => userRegister({ email, name, role: 'buyer' }))
+        .then(() => {
+          userRegister({ email, name, role: 'buyer' })
+          console.log(email)
+          dispatch(getUserByEmail(email))
+        })
       action.resetForm();
 
     },
@@ -37,6 +42,7 @@ const Signup = () => {
 
   if (isSuccess) {
     toast.success("Sign Up success", { id: email })
+    navigate('/')
   }
 
   if (isError) {
