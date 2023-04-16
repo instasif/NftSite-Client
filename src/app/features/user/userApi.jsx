@@ -16,11 +16,6 @@ const userApi = apiSlice.injectEndpoints({
                 body: data
             })
         }),
-        // getUserByEmail: builder.query({
-        //     query: (email) => ({
-        //         url: `/users/${email}`,
-        //     })
-        // })
     }),
 });
 
