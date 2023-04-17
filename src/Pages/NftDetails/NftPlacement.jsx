@@ -6,14 +6,15 @@ import { MdReport } from "react-icons/md";
 import { SiOpensea } from "react-icons/si";
 import { FiArrowUpRight } from "react-icons/fi";
 
-const NftPlacement = () => {
+const NftPlacement = ({data}) => {
+  const { name, image, priceETH, priceUSD } = data;
     return (
       <div className="relative mx-auto max-w-screen-xl px-4 py-8">
         <div className="grid grid-cols-1 items-start md:grid-cols-2">
           <div className="">
             <img
               alt="Les Paul"
-              src="https://public.nftstatic.com/static/nft/res/nft-cex/S3/1681052768645_2xoeghs6v6cux45zsq6r1l7gbnnsg294.png"
+              src={image}
               className="aspect-square w-[60%] mx-16 rounded-xl object-cover"
             />
           </div>
@@ -26,7 +27,7 @@ const NftPlacement = () => {
                   <MdVerified className="text-sm" />
                 </p>
 
-                <h2 className="text-4xl">W#4951</h2>
+                <h2 className="text-4xl">{name}</h2>
                 <div className="flex gap-1">
                   <small>Listed From</small>
                   <SiOpensea className="text-blue-500" />
@@ -50,13 +51,13 @@ const NftPlacement = () => {
 
               <div className="">
                 <h1 className="text-2xl">
-                  64.5 ETH{" "}
-                  <small className="text-slate-500">≈ 122,998.92 USD</small>
+                  {priceETH} ETH{" "}
+                  <small className="text-slate-500">≈ {priceUSD} USD</small>
                 </h1>
                 <p className="flex text-slate-500">
                   <FiArrowUpRight className="text-xl text-green-600" /> 0% above
                   the floor price{" "}
-                  <span className="text-black ms-1">64.5 ETH</span>
+                  <span className="text-black ms-1">{priceETH} ETH</span>
                 </p>
               </div>
             </div>
