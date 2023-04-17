@@ -6,6 +6,7 @@ import { MdReport } from "react-icons/md";
 import { SiOpensea } from "react-icons/si";
 import { FiArrowUpRight } from "react-icons/fi";
 
+
 const NftPlacement = ({data}) => {
   const { name, image, priceETH, priceUSD } = data;
     return (
@@ -24,7 +25,7 @@ const NftPlacement = ({data}) => {
               <div className="max-w-[35ch] space-y-2">
                 <p className="text-sm font-bold sm:text-sm text-yellow-500 flex align-content-center">
                   <strong>Seller Id Name</strong>{" "}
-                  <MdVerified className="text-sm" />
+                  <MdVerified className="text-sm text-blue-500" />
                 </p>
 
                 <h2 className="text-4xl">{name}</h2>
