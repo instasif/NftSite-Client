@@ -9,45 +9,63 @@ import Navigation from "../../shared/Header/Navigation";
 import { toast } from "react-hot-toast";
 import { useRegisterMutation } from "../../app/features/user/userApi";
 
-
 const initialValues = {
   name: "",
   email: "",
   password: "",
+  profile: "",
 };
 
 const Signup = () => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const [userRegister, { isLoading, isSuccess, isError, error, data }] = useRegisterMutation();
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [userRegister, { isLoading, isSuccess, isError, error, data }] =
+    useRegisterMutation();
+  const {
+    values,
+    errors,
+    touched,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    setFieldValue,
+  } = useFormik({
     initialValues: initialValues,
     validationSchema: signupSchema,
-    onSubmit: ({ email, password, name }, action) => {
+    onSubmit: ({ email, password, name, profile }, action) => {
 
+      const formData = new FormData();
+      formData.append("image", profile);
 
-      dispatch(createUser({ email, password }))
-        .then(() => {
-          userRegister({ email, password, role: 'buyer' })
-          dispatch(getUserByEmail(email))
-
+      const url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_API_KEY_imgbbKey
+        }`;
+      fetch(url, {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          const creatorImage = data.data.display_url;
+          dispatch(createUser({ email, password })).then(() => {
+            userRegister({ name, email, password, creatorImage, role: "buyer" });
+            dispatch(getUserByEmail(email));
+          });
         })
-      action.resetForm();
-
+        .catch((err) => console.error(err));
     },
   });
 
   if (isLoading) {
-    toast.loading("Posting....", { id: email })
+    toast.loading("Posting....", { id: email });
   }
 
   if (isSuccess) {
-    toast.success("Sign Up success", { id: email })
-    navigate('/')
+    toast.success("Sign Up success", { id: email });
+    navigate("/");
   }
 
   if (isError) {
-    toast.success(error, { id: email })
+    toast.success(error, { id: email });
   }
 
   return (
@@ -74,7 +92,7 @@ const Signup = () => {
             className="mx-auto mt-8 mb-0 max-w-md space-y-4"
           >
             <div>
-              <label for="name" className="sr-only">
+              <label htmlFor="name" className="sr-only">
                 Full Name
               </label>
 
@@ -98,7 +116,7 @@ const Signup = () => {
             </div>
 
             <div>
-              <label for="email" className="sr-only">
+              <label htmlFor="email" className="sr-only">
                 Email
               </label>
 
@@ -128,9 +146,9 @@ const Signup = () => {
                     stroke="currentColor"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      trokelinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
                     />
                   </svg>
@@ -139,7 +157,7 @@ const Signup = () => {
             </div>
 
             <div>
-              <label for="password" className="sr-only">
+              <label htmlFor="password" className="sr-only">
                 Password
               </label>
 
@@ -162,21 +180,30 @@ const Signup = () => {
               </div>
             </div>
 
-            {/* <div className="bg-white p-2 rounded-lg">
-              <label htmlFor="image" className="block mb-2 text-sm text-gray-500">
-                Cover Photo
+            <div className="bg-white p-2 rounded-lg">
+              <label
+                htmlFor="profile"
+                className="block mb-2 text-sm text-gray-500"
+              >
+                Submit Profile Picture
               </label>
               <input
                 required
                 type="file"
-                id="image"
-                name="image"
-                value={values.image}
-                onChange={handleChange}
+                id="profile"
+                name="profile"
+                onChange={(e) => {
+                  setFieldValue("profile", e.target.files[0]);
+                }}
                 onBlur={handleBlur}
                 accept="image/*"
               />
-            </div> */}
+              {errors.profile && touched.profile ? (
+                <p className="text-bold text-lg text-rose-600">
+                  {errors?.profile}
+                </p>
+              ) : null}
+            </div>
 
             <div className="flex items-center justify-between">
               <p className="text-sm text-white">

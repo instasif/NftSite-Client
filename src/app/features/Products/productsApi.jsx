@@ -12,14 +12,21 @@ const productsApi = apiSlice.injectEndpoints({
                 url: '/uploadNft',
                 method: 'POST',
                 body: product
-            })
+            }),
+            invalidatesTags: ['Nfts']
         }),
         productById: builder.query({
             query: (id) => ({
                 url: `/nft/${id}`
             })
+        }),
+        getProductsByEmail: builder.query({
+            query: (email) => ({
+                url: `/nftsByUser/${email}`
+            }),
+            providesTags: ['Nfts']
         })
     })
 })
 
-export const { useGetProductsQuery, useUploadNftMutation, useProductByIdQuery } = productsApi;
+export const { useGetProductsQuery, useUploadNftMutation, useProductByIdQuery, useGetProductsByEmailQuery } = productsApi;
