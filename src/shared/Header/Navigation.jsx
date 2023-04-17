@@ -44,7 +44,7 @@ const Navigation = () => {
     <nav
       className={`${scroll
         ? "bg-white shadow-md text-gray-700 hover:text-black"
-        : "bg-transparent text-white"
+        : "bg-gray-800 text-white"
         } fixed w-full z-50 transition duration-500`}
     >
       <div className="container mx-auto px-4 py-5 flex items-center justify-around ">
@@ -61,6 +61,12 @@ const Navigation = () => {
           <Link to="/" className="mx-3 font-medium">
             Live Actions
           </Link>
+          {
+            email && role === 'seller' && <>
+
+              <Link to='/dashboard' className="mx-3 font-medium">Deshboard</Link>
+            </>
+          }
           <Link to="/" className="mx-3 font-medium">
             Today's Picks
           </Link>

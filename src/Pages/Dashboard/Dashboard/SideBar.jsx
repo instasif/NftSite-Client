@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Bars3Icon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
   const [isActive, setActive] = useState("false");
+  const { email, name, creatorImage } = useSelector((state) => state.auth.user)
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
@@ -27,23 +29,22 @@ const Sidebar = () => {
       </div>
       {/* Sidebar */}
       <div
-        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
-          isActive && "-translate-x-full"
-        }  md:translate-x-0  transition duration-200 ease-in-out`}
+        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${isActive && "-translate-x-full"
+          }  md:translate-x-0  transition duration-200 ease-in-out`}
       >
         <div>
           {/* Branding & Profile Info */}
           <div className="flex flex-col items-center mt-6 -mx-2">
             <img
-              src="https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg"
+              src={creatorImage}
               alt=""
               className="object-cover w-24 h-24 mx-2 rounded-full"
             />
-            <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200">
-              John Doe
+            <h4 className="mx-2 mt-2 font-medium">
+              {name}
             </h4>
-            <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400">
-              john@example.com
+            <p className="mx-2 mt-1 text-sm font-medium text-gray-600">
+              {email}
             </p>
           </div>
 
@@ -52,7 +53,7 @@ const Sidebar = () => {
             <nav>
               <Link
                 to="/dashboard/uploadNfts"
-                className="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-800 dark:text-gray-200"
+                className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

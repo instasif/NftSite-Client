@@ -9,7 +9,7 @@ const UploadNftForm = () => {
   const submit = (e) => {
     e.preventDefault();
     const creator = e.target.creator.value;
-    const owner = e.target.owner.value;
+    const Owner = e.target.owner.value;
     const network = e.target.network.value;
     const tokenId = e.target.tokenId.value;
     const priceETH = e.target.priceETH.value;
@@ -17,6 +17,7 @@ const UploadNftForm = () => {
     const contact = e.target.contact.value;
     const description = e.target.description.value;
     const image = e.target.image.files[0];
+    console.log(image)
 
     const formData = new FormData();
     formData.append("image", image);
@@ -31,7 +32,7 @@ const UploadNftForm = () => {
       .then((data) => {
         const product = {
           creator,
-          owner,
+          Owner,
           email,
           network,
           tokenId,
@@ -39,7 +40,7 @@ const UploadNftForm = () => {
           priceUSD,
           contact,
           description,
-          creatorImage: null,
+          creatorImage,
           image: data.data.display_url
         };
         uploadNft(product);
