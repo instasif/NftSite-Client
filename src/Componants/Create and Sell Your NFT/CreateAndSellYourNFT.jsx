@@ -8,7 +8,7 @@ const CreateAndSellYourNFT = ({ NFT }) => {
         <img
           src={image}
           alt="NFT"
-          srcset=""
+          srcSet=""
           className="float-left inline-block  w-20 h-20 mb-3 "
         />
       </div>

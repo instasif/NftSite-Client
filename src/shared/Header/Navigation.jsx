@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../public/vite.svg";
-import { BsCart } from "react-icons/bs";
+import { BsCart, BsSearch } from "react-icons/bs";
 import { FiMenu } from "react-icons/fi";
 import { ImCross } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,10 +11,11 @@ import auth from "../../firebase/firebase.config";
 import { toast } from "react-hot-toast";
 
 const Navigation = () => {
-  const { email, role } = useSelector((state) => state.auth.user)
+  const { email, role } = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const [scroll, setScroll] = useState(false);
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -34,18 +35,24 @@ const Navigation = () => {
   };
 
   const logOut = () => {
-    signOut(auth)
-      .then(() => {
-        dispatch(userSignOut())
-        toast.success("Log Out Success")
-      })
-  }
+    signOut(auth).then(() => {
+      dispatch(userSignOut());
+      toast.success("Log Out Success");
+    });
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const search = e.target.search.value;
+    setSearch(search);
+  };
   return (
     <nav
-      className={`${scroll
-        ? "bg-white shadow-md text-gray-700 hover:text-black"
-        : "bg-gray-800 text-white"
-        } fixed w-full z-50 transition duration-500`}
+      className={`${
+        scroll
+          ? "bg-white shadow-md text-gray-700 hover:text-black"
+          : "bg-gray-800 text-white"
+      } w-full z-50 transition duration-500`}
     >
       <div className="container mx-auto px-4 py-5 flex items-center justify-around ">
         <Link to="/">
@@ -61,12 +68,13 @@ const Navigation = () => {
           <Link to="/" className="mx-3 font-medium">
             Live Actions
           </Link>
-          {
-            email && role === 'seller' && <>
-
-              <Link to='/dashboard' className="mx-3 font-medium">Deshboard</Link>
+          {email && role === "seller" && (
+            <>
+              <Link to="/dashboard" className="mx-3 font-medium">
+                Deshboard
+              </Link>
             </>
-          }
+          )}
           <Link to="/" className="mx-3 font-medium">
             Today's Picks
           </Link>
@@ -84,31 +92,60 @@ const Navigation = () => {
               </p>
             </div>
           </Link>
+
+          <form className="mb-0 flex" onSubmit={handleSearch}>
+            <div className="relative">
+              <input
+                className="h-8 rounded-lg pe-10 text-sm placeholder-gray-300 focus:z-10 text-black"
+                placeholder="Search..."
+                type="text"
+                name="search"
+              />
+
+              <button
+                type="submit"
+                className="absolute inset-y-0 end-0 rounded-r-lg p-2 text-gray-600"
+              >
+                <span className="sr-only">Submit Search</span>
+                <BsSearch />
+              </button>
+            </div>
+          </form>
         </div>
         <div>
-          {
-            !email ? <> <Link to="/login" className="mx-3 font-medium">
-              <button className="bg-blue-950 rounded-3xl mt-[-10px] px-4 py-2 hover:bg-pink-800 text-white">
-                Login
-              </button>
-            </Link>
-            </> :
-              <button className="bg-blue-950 rounded-3xl mt-[-10px] px-4 py-2 w-36 hover:bg-pink-800 text-white" onClick={logOut}>Log Out</button>
-          }
-          {
-            email && role === 'buyer' && <>
-
-              <Link to='/sellerForm'><button className="bg-black rounded-3xl mt-[-10px] px-3 py-2 hover:bg-blue-950 border-2 border-white text-white">
-                Become Seller
-              </button></Link>
+          {!email ? (
+            <>
+              {" "}
+              <Link to="/login" className="mx-3 font-medium">
+                <button className="bg-blue-950 rounded-3xl mt-[-10px] px-4 py-2 hover:bg-pink-800 text-white">
+                  Login
+                </button>
+              </Link>
             </>
-          }
+          ) : (
+            <button
+              className="bg-blue-950 rounded-3xl mt-[-10px] px-4 py-2 w-36 hover:bg-pink-800 text-white"
+              onClick={logOut}
+            >
+              Log Out
+            </button>
+          )}
+          {email && role === "buyer" && (
+            <>
+              <Link to="/sellerForm">
+                <button className="bg-black rounded-3xl mt-[-10px] px-3 py-2 hover:bg-blue-950 border-2 border-white text-white">
+                  Become Seller
+                </button>
+              </Link>
+            </>
+          )}
         </div>
         <div className="md:hidden flex items-center">
           <button
             onClick={handleMenuToggle}
-            className={`${open ? "text-white" : "text-white"
-              } focus:outline-none hover:text-gray-400`}
+            className={`${
+              open ? "text-white" : "text-white"
+            } focus:outline-none hover:text-gray-400`}
           >
             {open ? <ImCross size={24} /> : <FiMenu size={24} />}
           </button>
