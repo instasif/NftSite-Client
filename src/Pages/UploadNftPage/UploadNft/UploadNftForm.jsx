@@ -9,7 +9,7 @@ const UploadNftForm = () => {
   const submit = (e) => {
     e.preventDefault();
     const creator = e.target.creator.value;
-    const Owner = e.target.owner.value;
+    const owner = e.target.owner.value;
     const network = e.target.network.value;
     const tokenId = e.target.tokenId.value;
     const priceETH = e.target.priceETH.value;
