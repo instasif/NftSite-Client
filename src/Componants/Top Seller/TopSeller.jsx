@@ -16,7 +16,7 @@ const TopSeller = ({ Seller }) => {
       <img
         src={icon}
         alt=""
-        srcset=""
+        srcSet=""
         className="w-full bg-gray-400  mt-[-28px] h-28  col-span-2 row-span-2 rounded-lg shadow-lg min-h-96 md:col-start-3 md:row-start-1  aspect-square"
       />{" "}
       <h3 className="text-xl text-gray-900 font-semibold mt-2"> {name}</h3>
