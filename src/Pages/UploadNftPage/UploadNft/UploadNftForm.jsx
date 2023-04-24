@@ -32,7 +32,7 @@ const UploadNftForm = () => {
       .then((data) => {
         const product = {
           creator,
-          Owner,
+          owner,
           email,
           network,
           tokenId,
