@@ -50,11 +50,11 @@ const Navigation = () => {
     <nav
       className={`${
         scroll
-          ? "bg-white shadow-md text-gray-700 hover:text-black"
-          : "bg-gray-800 text-white"
-      } w-full z-50 transition duration-500`}
+          ? "bg-white shadow-md text-black hover:text-black"
+          : "backdrop-brightness-100 text-black"
+      } fixed w-full z-50 transition  duration-500`}
     >
-      <div className="container mx-auto px-4 py-5 flex items-center justify-around ">
+      <div className="container  px-4 py-5 flex items-center justify-around ">
         <Link to="/">
           <img src={logo} alt="logo" className="w-7" />
         </Link>
