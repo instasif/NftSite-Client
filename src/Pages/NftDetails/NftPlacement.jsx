@@ -5,9 +5,10 @@ import { RiShareFill } from "react-icons/ri";
 import { MdReport } from "react-icons/md";
 import { SiOpensea } from "react-icons/si";
 import { FiArrowUpRight } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const NftPlacement = ({ data }) => {
-  const { name, image, priceETH, priceUSD } = data;
+  const { name, image, priceETH, priceUSD, _id } = data;
   return (
     <div className=" mx-auto max-w-screen-xl px-4 pt-28 pb-8">
       <div className="grid grid-cols-1 items-start md:grid-cols-2">
@@ -62,9 +63,9 @@ const NftPlacement = ({ data }) => {
             </div>
           </div>
 
-          <button className="bg-yellow-300 w-[35%] h-[50px] rounded mt-8">
+          <Link to={`/payment/${_id}`}><button className="bg-yellow-300 w-[35%] h-[50px] rounded mt-8">
             Buy Now
-          </button>
+          </button></Link>
         </div>
       </div>
     </div>
