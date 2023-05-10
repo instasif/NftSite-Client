@@ -51,7 +51,7 @@ const Navigation = () => {
       className={`${
         scroll
           ? "bg-white shadow-md text-black hover:text-black"
-          : "backdrop-brightness-100 text-black"
+          : "backdrop-brightness-100 text-white"
       } fixed w-full z-50 transition  duration-500`}
     >
       <div className="container  px-4 py-5 flex items-center justify-around ">
@@ -96,7 +96,7 @@ const Navigation = () => {
           <form className="mb-0 flex" onSubmit={handleSearch}>
             <div className="relative">
               <input
-                className="h-8 rounded-lg pe-10 text-sm placeholder-gray-300 focus:z-10 text-black"
+                className="h-8 rounded-lg pe-10 text-sm placeholder-gray-300 focus:z-10 text-black input-bordered"
                 placeholder="Search..."
                 type="text"
                 name="search"

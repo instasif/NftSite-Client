@@ -12,6 +12,7 @@ import DashboardLayout from "../../layouts/DashboardLayout";
 import UploadNftPage from "../../Pages/UploadNftPage/UploadNftPage";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import Payment from "../../Pages/Payment/Payment";
+import SellerPage from "../../Pages/Dashboard/Dashboard/SellerPage/SellerPage";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
         path: "/payment/:id",
         element: <Payment />,
       },
+      {
+        path: "/sellerCollection",
+        element: <SellerPage />
+      }
     ],
   },
   {
@@ -65,7 +70,6 @@ const router = createBrowserRouter([
         path: "uploadNfts",
         element: <UploadNftPage />,
       },
-
     ],
   },
 ]);
